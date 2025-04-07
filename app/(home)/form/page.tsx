@@ -58,7 +58,7 @@ export default function FormPage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
       <div className="flex flex-col items-center gap-5">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>

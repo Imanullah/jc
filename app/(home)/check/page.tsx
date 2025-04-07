@@ -35,8 +35,8 @@ export default function CheckPage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen md:h-fit justify-between p-[20px]">
-      <div className=''>
+    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
+      <div className="">
         <HexagonImage />
         <SwiperComponent />
       </div>
