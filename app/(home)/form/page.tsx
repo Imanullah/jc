@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -10,6 +10,8 @@ import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { useRouter } from 'next/navigation';
+
+const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
 type TForm = {
   fname: string;
@@ -35,6 +37,8 @@ export default function FormPage() {
 
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
+  const refInput = useRef(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -52,10 +56,16 @@ export default function FormPage() {
     }
   };
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setFocus('fname');
+  });
+
+  useEffect(() => {
+    console.log(isFocused);
+    // console.log(refInput.current)
+    // refInput.current.style.transform = 'translateY(-50px)';
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
-  }, [setFocus]);
+  }, [setFocus, isFocused]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
@@ -68,11 +78,11 @@ export default function FormPage() {
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="relative flex items-center">
+          <div ref={refInput} className="relative flex items-center">
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
               <Image src={Arrowup} alt="" className="w-[15px]" />
             </button>
-            <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none fixed', { 'border-red-400 text-red-400': errors?.fname })} />
+            <input onFocus={() => setIsFocused(true)} type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
           </div>
           {errors?.fname && <p className="text-xs text-red-400 p-2">{errors?.fname.message}</p>}
         </form>
