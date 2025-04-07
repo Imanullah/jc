@@ -62,7 +62,7 @@ export default function FormPage() {
       <div>
         <AppHeader routeBack="/form" />
       </div>
-      <div className="flex-1 flex-col items-center gap-5 py-[20px]">
+      <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">How should we contact you? Type in your email address</p>
       </div>

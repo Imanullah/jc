@@ -17,9 +17,9 @@ export default function StartingPage() {
   const { fname } = useFormStore();
   const router = useRouter();
 
-  useIsomorphicLayoutEffect(() => {
-    if (!fname) router.push('/form');
-  }, [fname]);
+  // useIsomorphicLayoutEffect(() => {
+  //   if (!fname) router.push('/form');
+  // }, [fname]);
 
   useGSAP(() => {
     gsap.to('.hexa', { rotateZ: '+=360', duration: 3, repeat: -1, ease: 'none' });
@@ -30,10 +30,10 @@ export default function StartingPage() {
       <div>
         <AppHeader routeBack="/form/1" />
       </div>
-      <div className="flex-1 flex-col items-center gap-5 py-[20px]">
+      <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">
-          Thanks <span className="capitalize">{fname}</span>! Now, it's time to get a reallity check
+          Thanks <span className="capitalize">{fname ? fname : '__'}</span>! Now, it's time to get a reallity check
         </p>
         <p className="text-[#FAFAFA] text-[19px] text-center">That will take 2-3 minutes</p>
       </div>
