@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 
 import { cn } from '@/lib/utils';
+import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 
@@ -57,12 +58,15 @@ export default function FormPage() {
   }, [setFocus]);
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
-      <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+      <div>
+        <AppHeader />
+      </div>
+      <div className="flex-1 flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">How should we contact you? Type in your email address</p>
       </div>
-      <div className="py-[20px] flex flex-col gap-5 ">
+      <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex items-center">
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">

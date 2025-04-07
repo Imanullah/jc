@@ -4,9 +4,9 @@ import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 
 import { cn } from '@/lib/utils';
+import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { useRouter } from 'next/navigation';
@@ -63,7 +63,10 @@ export default function FormPage() {
 
   return (
     <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
-      <div className="flex flex-col items-center gap-5">
+      <div>
+        <AppHeader />
+      </div>
+      <div className="flex-1 flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
       </div>

@@ -18,7 +18,7 @@ export default function CheckPage() {
   const router = useRouter();
 
   const onCheckPage = (url: string) => {
-    gsap.fromTo('.v-image', { y: 0 }, { scale: -0.1, y: -125, duration: 1.5, onComplete: () => onPageExit() });
+    gsap.fromTo('.v-image', { y: 0 }, { scale: -0.1, y: -100, duration: 1.5, onComplete: () => onPageExit() });
     setIsActive(false);
     setIsAction(false);
 
