@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 
 import { cn } from '@/lib/utils';
 import Arrowup from '@/assets/icons/arrow_up.png';
@@ -53,7 +52,7 @@ export default function FormPage() {
   };
 
   useEffect(() => {
-    setFocus('fname');
+    setFocus('email');
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
   }, []);
 
