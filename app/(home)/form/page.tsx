@@ -52,21 +52,17 @@ export default function FormPage() {
     }
   };
 
-  const checkFocus = () => {
-    console.log('Fokus');
-  };
-
   useEffect(() => {
     setFocus('fname');
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
   }, [setFocus]);
 
   return (
-    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
+      <div className="flex-1 flex flex-col items-center gap-5 py-[20px] bg-amber-300">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
       </div>

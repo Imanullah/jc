@@ -26,7 +26,7 @@ export default function StartingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/form/1" />
       </div>

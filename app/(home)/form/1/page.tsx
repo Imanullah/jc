@@ -58,7 +58,7 @@ export default function FormPage() {
   }, [setFocus]);
 
   return (
-    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/form" />
       </div>
