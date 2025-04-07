@@ -62,12 +62,12 @@ export default function FormPage() {
   }, [setFocus]);
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
       <div className="flex flex-col items-center gap-5">
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
       </div>
-      <div className="py-[20px] flex flex-col gap-5 ">
+      <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex items-center">
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
