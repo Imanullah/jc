@@ -12,7 +12,7 @@ Task is to build a web application based on the provided Figma design
 - Deployed: [https://juicebox-iman.vercel.app](https://juicebox-iman.vercel.app)
 
 ## Local server
-clone [git@github.com:Imanullah/jc.git]:
+git clone [`git@github.com:Imanullah/jc.git`](https://github.com/Imanullah/jc)
 
 ```bash
 npm install
