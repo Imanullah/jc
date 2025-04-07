@@ -39,7 +39,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+    <div className="flex flex-col h-screen md:h-fit justify-between p-[20px]">
       <div>
         <HexagonImage />
         <div className="pb-[20px] pt-[40px] px-1">
