@@ -21,7 +21,7 @@ export default function AppHeader() {
   };
 
   return (
-    <div className="flex justify-between items-center p-[20px] md:max-w-md gap-2">
+    <div className="flex justify-between items-center pb-[20px] md:max-w-md gap-2">
       <div className="flex justify-first min-w-14">
         <RoundedButton icon={ArrowLeft} onClick={() => router.push('/')} className={cn('', { hidden: isActive || pathname == '/' || pathname.includes('/form') })} />
         <RoundedButton icon={ArrowLeft} className={cn('prev-el', { hidden: !isActive || pathname == '/' || pathname.includes('/form') })} />

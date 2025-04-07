@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
+import AppHeader from '@/components/AppHeader';
 import { CheckButton } from '@/components/CustomButton';
 import HexagonImage from '@/components/HexagonImage';
 import SlideUp from '@/components/animation/SlideUp';
 import FadeOut from '@/components/animation/FadeOut';
-import AppHeader from '@/components/AppHeader';
 
 const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
@@ -54,7 +54,7 @@ export default function HomePage() {
           </SlideUp>
         </div>
       </div>
-      <div className="py-[20px]">
+      <div className="pt-[20px]">
         <FadeOut>
           <CheckButton onClick={() => handleRoute('/check')} className="btn-check">
             Get reality check

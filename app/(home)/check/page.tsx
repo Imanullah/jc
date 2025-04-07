@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
+import AppHeader from '@/components/AppHeader';
 import { useBaseContext } from '@/providers/BaseProvider';
 import HexagonImage from '@/components/HexagonImage';
 import SwiperComponent from '@/components/SwiperComponent';
@@ -35,12 +36,15 @@ export default function CheckPage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
-      <div className="">
+    <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
+      <div>
+        <AppHeader />
+      </div>
+      <div className="flex-1">
         <HexagonImage />
         <SwiperComponent />
       </div>
-      <div className="py-[20px] flex flex-col gap-5 ">
+      <div className="pt-[20px] flex flex-col gap-5 ">
         <div className="pagination-swipe flex justify-center py-[20px]"></div>
 
         <CheckButton className={cn('next-el bg-transparent text-white border border-neutral-50', { hidden: isAction })}>Continue</CheckButton>
