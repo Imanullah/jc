@@ -5,13 +5,13 @@ import AppHeader from '@/components/AppHeader';
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container main-bg md:max-w-md">
-      <BaseProvider>
+    <BaseProvider>
+      <div className="container main-bg md:h-fit md:max-w-md">
         <header>
-          <AppHeader />
+          {/* <AppHeader /> */}
         </header>
         <main>{children}</main>
-      </BaseProvider>
-    </div>
+      </div>
+    </BaseProvider>
   );
 }

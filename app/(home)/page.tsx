@@ -8,6 +8,7 @@ import { CheckButton } from '@/components/CustomButton';
 import HexagonImage from '@/components/HexagonImage';
 import SlideUp from '@/components/animation/SlideUp';
 import FadeOut from '@/components/animation/FadeOut';
+import AppHeader from '@/components/AppHeader';
 
 const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
@@ -39,8 +40,11 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
-      <div className="">
+    <div className="flex flex-col h-dvh md:h-fit p-[20px]">
+      <div>
+        <AppHeader />
+      </div>
+      <div className="flex-1">
         <HexagonImage />
         <div className="pb-[20px] pt-[40px] px-1">
           <SlideUp>

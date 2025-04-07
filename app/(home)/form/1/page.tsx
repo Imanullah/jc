@@ -54,7 +54,7 @@ export default function FormPage() {
   useEffect(() => {
     setFocus('email');
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
-  }, []);
+  }, [setFocus]);
 
   return (
     <div className="flex flex-col h-[calc(100dvh-70px)] md:h-fit justify-between p-[20px]">
