@@ -64,7 +64,7 @@ export default function FormPage() {
   return (
     <div className="flex flex-col h-dvh md:h-fit justify-between p-[20px]">
       <div>
-        <AppHeader />
+        <AppHeader routeBack="/check" />
       </div>
       <div className="flex-1 flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
