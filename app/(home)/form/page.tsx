@@ -73,7 +73,7 @@ export default function FormPage() {
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[25px]', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-16">Let's start with the basics. Type in your first name.</p>
       </div>
