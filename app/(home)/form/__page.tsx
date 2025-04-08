@@ -67,11 +67,10 @@ export default function FormPage() {
   // useEffect(() => {
   //   const handleResize = () => {
   //     // Detect keyboard open/close based on window height changes
-  //     const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.7;
-  //     // setIsKeyboardOpen(isKeyboardVisible);
+  //     const isKeyboardVisible = window.innerHeight < window.outerHeight;
+  //     setIsKeyboardOpen(isKeyboardVisible);
   //   };
 
-  //   // handleResize();
   //   window.addEventListener('resize', handleResize);
   //   return () => window.removeEventListener('resize', handleResize);
   // }, []);

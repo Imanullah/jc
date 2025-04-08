@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState,  } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -60,6 +60,7 @@ export default function FormPage() {
   };
 
   useIsomorphicLayoutEffect(() => {
+    console.log(isKeyboardVisible);
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
   });
@@ -77,7 +78,7 @@ export default function FormPage() {
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300')}>
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
         <p className="text-[#FAFAFA]">{`${isKeyboardVisible}`}</p>
