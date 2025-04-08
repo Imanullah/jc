@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState,  } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -41,7 +41,7 @@ export default function FormPage() {
   const inputRef = useRef(null);
   // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const isKeyboardOpen = useDetectKeyboardOpen();
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [isFocused, setIsFocused] = useState('');
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -64,11 +64,23 @@ export default function FormPage() {
     setFocus('fname');
   });
 
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     // Detect keyboard open/close based on window height changes
+  //     const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.7;
+  //     // setIsKeyboardOpen(isKeyboardVisible);
+  //   };
+
+  //   // handleResize();
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
+
   useEffect(() => {
     if (isKeyboardOpen) {
-      setKeyboardVisible(true);
+      setIsFocused('Buka');
     } else if (!isKeyboardOpen) {
-      setKeyboardVisible(false);
+      setIsFocused('Tutup');
     }
   }, [isKeyboardOpen]);
 
@@ -80,7 +92,7 @@ export default function FormPage() {
       <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300')}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        <p className="text-[#FAFAFA]">{`${isKeyboardVisible}`}</p>
+        <p className="text-[#FAFAFA]">{`${isFocused}`}</p>
         <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
