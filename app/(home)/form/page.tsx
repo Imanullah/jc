@@ -81,14 +81,14 @@ export default function FormPage() {
     } else if (!isKeyboardOpen) {
       setIsFocused('Tutup');
     }
-  }, [isKeyboardOpen]);
+  }, [isKeyboardOpen, isFocused]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-amber-300')}>
+      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300')}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
         <p className="text-[#FAFAFA]">{`${isFocused}`}</p>
