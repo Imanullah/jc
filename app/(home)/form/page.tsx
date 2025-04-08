@@ -38,7 +38,8 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState('');
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -66,20 +67,21 @@ export default function FormPage() {
     const handleResize = () => {
       // Detect keyboard open/close based on window height changes
       const isKeyboardVisible = window.innerHeight < window.outerHeight;
-      setIsFocused(isKeyboardVisible);
+      setIsKeyboardOpen(isKeyboardVisible);
     };
 
-    handleResize();
-
+    // handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-    console.log(isFocused);
-    const isKeyboardVisible = window.innerHeight < window.outerHeight;
-    console.log(isKeyboardVisible);
-  }, [isFocused]);
+    if (isKeyboardOpen) {
+      setIsFocused('Buka');
+    } else if (!isKeyboardOpen) {
+      setIsFocused('Tutup');
+    }
+  }, [isKeyboardOpen]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
