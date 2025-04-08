@@ -78,11 +78,11 @@ export default function FormPage() {
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300', { 'flex-1': !isKeyboardVisible })}>
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-600', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        <p className="text-[#FAFAFA]">{`${isKeyboardVisible}`}</p>
-        <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p>
+        {/* <p className="text-[#FAFAFA]">{`${isKeyboardVisible}`}</p>
+        <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -90,9 +90,7 @@ export default function FormPage() {
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
               <Image src={Arrowup} alt="" className="w-[15px]" />
             </button>
-            <input type="text" {...register('fname', { onBlur: () => console.log('blur'), ...nameValidation })} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
-
-            {/* <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} /> */}
+            <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
           </div>
           {errors?.fname && <p className="text-xs text-red-400 p-2">{errors?.fname.message}</p>}
         </form>
