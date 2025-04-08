@@ -50,7 +50,7 @@ export default function FormPage() {
   };
 
   useIsomorphicLayoutEffect(() => {
-    // gsap.fromTo(lottieRef.current, { opacity: 0 }, { opacity: 1, duration: 3 });
+    gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('email');
   }, []);
 
@@ -85,7 +85,7 @@ export default function FormPage() {
         <AppHeader routeBack="/form" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <DotLottieReact src="/JB2G_Lottie.lottie" style={{ width: '100px', height: 'auto' }} dotLottieRefCallback={setDotLottie} />
+        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-20" dotLottieRefCallback={setDotLottie} />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">How should we contact you? Type in your email address</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">

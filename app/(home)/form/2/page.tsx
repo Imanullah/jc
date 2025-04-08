@@ -21,7 +21,7 @@ export default function StartingPage() {
         <AppHeader routeBack="/form/1" />
       </div>
       <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
-        <DotLottieReact src="/JB2G_Lottie.lottie" autoplay loop style={{ width: '100px', height: 'auto' }} />
+        <DotLottieReact src="/JB2G_Lottie.lottie" autoplay loop className="hexa w-20" />
         <div className="pb-20">
           <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">
             Thanks <span className="capitalize">{fname ? fname : '__'}</span>! Now, it's time to get a reallity check
