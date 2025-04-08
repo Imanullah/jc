@@ -38,7 +38,7 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -66,7 +66,6 @@ export default function FormPage() {
     const handleResize = () => {
       // Detect keyboard open/close based on window height changes
       const isKeyboardVisible = window.innerHeight < window.outerHeight;
-      console.log(isKeyboardVisible);
       setIsFocused(isKeyboardVisible);
     };
 
@@ -78,6 +77,8 @@ export default function FormPage() {
 
   useEffect(() => {
     console.log(isFocused);
+    const isKeyboardVisible = window.innerHeight < window.outerHeight;
+    console.log(isKeyboardVisible);
   }, [isFocused]);
 
   return (
@@ -85,9 +86,10 @@ export default function FormPage() {
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-300', { 'flex-1': !isFocused })}>
+      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-amber-300')}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
+        <p className="text-[#FAFAFA]">{`${isFocused}`}</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -95,7 +97,8 @@ export default function FormPage() {
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
               <Image src={Arrowup} alt="" className="w-[15px]" />
             </button>
-            <input type="text" onFocus={() => setIsFocused(true)} {...register('fname', { onBlur: () => setIsFocused(false), ...nameValidation })} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
+            <input type="text" {...register('fname', { onBlur: () => console.log('blur'), ...nameValidation })} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
+
             {/* <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} /> */}
           </div>
           {errors?.fname && <p className="text-xs text-red-400 p-2">{errors?.fname.message}</p>}
