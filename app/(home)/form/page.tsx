@@ -43,11 +43,9 @@ export default function FormPage() {
   // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-
-  const [height, setHeight] = useState(0);
   const { innerHeight } = useWindowSize();
 
-  const handleResize = () => setHeight(window.innerHeight);
+  const [isHeight, setIsHeight] = useState(0);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -71,15 +69,15 @@ export default function FormPage() {
   });
 
   useEffect(() => {
-    // handleResize();
+    console.log(innerHeight);
     if (isKeyboardOpen) {
       setKeyboardVisible(true);
-      setHeight(window.innerHeight);
+      setIsHeight(innerHeight as number);
     } else if (!isKeyboardOpen) {
       setKeyboardVisible(false);
-      setHeight(window.innerHeight);
+      setIsHeight(innerHeight as number);
     }
-  }, [isKeyboardOpen, height]);
+  }, [isKeyboardOpen, innerHeight]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
@@ -89,8 +87,7 @@ export default function FormPage() {
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-600', { 'flex-1 h-full': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        <p className="text-[#FAFAFA]">{height}</p>
-        {/* <p className="text-[#FAFAFA]">{innerHeight}</p> */}
+        <p className="text-[#FAFAFA]">{isHeight}</p>
         {/* <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
