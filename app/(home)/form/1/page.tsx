@@ -1,12 +1,13 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
+import useDetectKeyboardOpen from 'use-detect-keyboard-open';
 
-import { cn } from '@/lib/utils';
+import { cn, useIsomorphicLayoutEffect } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
@@ -35,6 +36,8 @@ export default function FormPage() {
 
   const { setEmail } = useFormStore((state) => state);
   const router = useRouter();
+  const isKeyboardOpen = useDetectKeyboardOpen();
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -52,19 +55,27 @@ export default function FormPage() {
     }
   };
 
-  useEffect(() => {
-    setFocus('email');
+  useIsomorphicLayoutEffect(() => {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
+    setFocus('email');
   }, [setFocus]);
+
+  useEffect(() => {
+    if (isKeyboardOpen) {
+      setKeyboardVisible(true);
+    } else if (!isKeyboardOpen) {
+      setKeyboardVisible(false);
+    }
+  }, [isKeyboardOpen]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/form" />
       </div>
-      <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
-        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">How should we contact you? Type in your email address</p>
+        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-12">How should we contact you? Type in your email address</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>

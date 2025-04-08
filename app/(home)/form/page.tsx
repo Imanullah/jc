@@ -1,18 +1,16 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
 
-import { cn } from '@/lib/utils';
+import { cn, useIsomorphicLayoutEffect } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { useRouter } from 'next/navigation';
-
-const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
 type TForm = {
   fname: string;
@@ -60,7 +58,7 @@ export default function FormPage() {
   useIsomorphicLayoutEffect(() => {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
-  });
+  }, [setFocus]);
 
   useEffect(() => {
     if (isKeyboardOpen) {
@@ -77,7 +75,7 @@ export default function FormPage() {
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
-        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-10">Let's start with the basics. Type in your first name.</p>
+        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-12">Let's start with the basics. Type in your first name.</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
