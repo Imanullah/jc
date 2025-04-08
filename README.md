@@ -5,7 +5,7 @@ Task is to build a web application based on the provided Figma design
   - Reusable Components
   - Zustand for global state management
 - Styling: Tailwindcss CSS v.4
-- Animations: Use GSAP for ReactJS & SwiperJS
+- Animations: Use GSAP, Lottie animation & SwiperJS
 
 ## Deployment
 - Code Repository: [https://github.com/Imanullah/jc](https://github.com/Imanullah/jc)

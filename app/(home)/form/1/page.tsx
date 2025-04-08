@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import HexagonImageSmall from '@/components/HexagonImageSmall';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -12,7 +11,6 @@ import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { SmallRoundedButton } from '@/components/CustomButton';
-
 
 type TForm = {
   fname: string;
@@ -40,20 +38,12 @@ export default function FormPage() {
   const router = useRouter();
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [dotLottie, setDotLottie] = useState<any>(null);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
-      gsap.to('.hexa', {
-        rotateZ: 360,
-        duration: 1,
-        onComplete: () => submitComplete(),
-      });
-
-      const submitComplete = () => {
-        setEmail(data.email);
-        reset();
-        router.push('/form/2');
-      };
+      dotLottie?.play();
+      setEmail(data.email);
     }
   };
 
@@ -70,13 +60,30 @@ export default function FormPage() {
     }
   }, [isKeyboardOpen]);
 
+  useEffect(() => {
+    const onComplete = () => {
+      reset();
+      router.push('/form/2');
+    };
+
+    if (dotLottie) {
+      dotLottie.addEventListener('complete', onComplete);
+    }
+
+    return () => {
+      if (dotLottie) {
+        dotLottie.removeEventListener('complete', onComplete);
+      }
+    };
+  }, [dotLottie]);
+
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/form" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-16" />
+        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-16" dotLottieRefCallback={setDotLottie} />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">How should we contact you? Type in your email address</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">

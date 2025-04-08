@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import HexagonImageSmall from '@/components/HexagonImageSmall';
+// import HexagonImageSmall from '@/components/HexagonImageSmall';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
@@ -39,21 +39,12 @@ export default function FormPage() {
   const router = useRouter();
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-  const [lottiePlay, setLottiePaly] = useState(false)
+  const [dotLottie, setDotLottie] = useState<any>(null);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
-      gsap.to('.hexa', {
-        rotateZ: 360,
-        duration: 1,
-        onComplete: () => submitComplete(),
-      });
-
-      const submitComplete = () => {
-        setFname(data.fname);
-        reset();
-        router.push('/form/1');
-      };
+      dotLottie?.play();
+      setFname(data.fname);
     }
   };
 
@@ -70,13 +61,30 @@ export default function FormPage() {
     }
   }, [isKeyboardOpen]);
 
+  useEffect(() => {
+    const onComplete = () => {
+      reset();
+      router.push('/form/1');
+    };
+
+    if (dotLottie) {
+      dotLottie.addEventListener('complete', onComplete);
+    }
+
+    return () => {
+      if (dotLottie) {
+        dotLottie.removeEventListener('complete', onComplete);
+      }
+    };
+  }, [dotLottie]);
+
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/check" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <DotLottieReact src="/JB2G_Lottie.lottie" autoplay={lottiePlay} className="hexa w-16" />
+        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-16" dotLottieRefCallback={setDotLottie} />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">Let's start with the basics. Type in your first name.</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
