@@ -38,7 +38,7 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(true);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -76,20 +76,16 @@ export default function FormPage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-   useEffect(() => {
-     if (isFocused && inputRef.current) {
-       inputRef.current.style.transform = 'translateY(-50px)';
-     } else if (!isFocused && inputRef.current) {
-       inputRef.current.style.transform = 'translateY(0)';
-     }
-   }, [isFocused]);
+  useEffect(() => {
+    console.log(isFocused);
+  }, [isFocused]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-amber-300')}>
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-300', { 'flex-1': !isFocused })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
       </div>
