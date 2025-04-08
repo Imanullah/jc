@@ -86,7 +86,7 @@ export default function FormPage() {
         <AppHeader routeBack="/check" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <DotLottieReact src="/JB2G_Lottie.lottie" style={{ width: '100px', height: 'auto' }} dotLottieRefCallback={setDotLottie} />
+        <DotLottieReact src="/JB2G_Lottie.lottie" style={{ width: '100px', height: '100px' }} dotLottieRefCallback={setDotLottie} />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">Let's start with the basics. Type in your first name.</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
