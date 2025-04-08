@@ -58,7 +58,7 @@ export default function FormPage() {
   useIsomorphicLayoutEffect(() => {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
-  }, [setFocus]);
+  }, []);
 
   useEffect(() => {
     if (isKeyboardOpen) {
