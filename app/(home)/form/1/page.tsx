@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
@@ -11,6 +12,7 @@ import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { SmallRoundedButton } from '@/components/CustomButton';
+
 
 type TForm = {
   fname: string;
@@ -74,7 +76,7 @@ export default function FormPage() {
         <AppHeader routeBack="/form" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <HexagonImageSmall />
+        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-16" />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">How should we contact you? Type in your email address</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">

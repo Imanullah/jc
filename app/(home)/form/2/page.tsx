@@ -1,11 +1,11 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import AppHeader from '@/components/AppHeader';
 import { useFormStore } from '@/stores/formStore';
 import { CheckButton } from '@/components/CustomButton';
-import HexagonImageSmall from '@/components/HexagonImageSmall';
-import JB2G_Lottie from '@/assets/icons/JB2G_Lottie.gif';
+
 
 export default function StartingPage() {
   const { fname } = useFormStore();
@@ -21,7 +21,7 @@ export default function StartingPage() {
         <AppHeader routeBack="/form/1" />
       </div>
       <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
-        <HexagonImageSmall image={JB2G_Lottie} />
+        <DotLottieReact src="/JB2G_Lottie.lottie" autoplay loop style={{ width: '60px', height: 'auto' }} />
         <div className="pb-20">
           <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">
             Thanks <span className="capitalize">{fname ? fname : '__'}</span>! Now, it's time to get a reallity check

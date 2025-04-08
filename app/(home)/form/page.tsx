@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
@@ -38,6 +39,7 @@ export default function FormPage() {
   const router = useRouter();
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const [lottiePlay, setLottiePaly] = useState(false)
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -74,13 +76,13 @@ export default function FormPage() {
         <AppHeader routeBack="/check" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <HexagonImageSmall />
+        <DotLottieReact src="/JB2G_Lottie.lottie" autoplay={lottiePlay} className="hexa w-16" />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">Let's start with the basics. Type in your first name.</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex items-center">
-            <SmallRoundedButton icon={Arrowup} className="absolute right-0 mr-3" type='submit' />
+            <SmallRoundedButton icon={Arrowup} className="absolute right-0 mr-3" type="submit" />
 
             <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
           </div>
