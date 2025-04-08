@@ -69,11 +69,13 @@ export default function FormPage() {
   });
 
   useEffect(() => {
-    handleResize();
+    // handleResize();
     if (isKeyboardOpen) {
       setKeyboardVisible(true);
+      setHeight(window.innerHeight);
     } else if (!isKeyboardOpen) {
       setKeyboardVisible(false);
+      setHeight(window.innerHeight);
     }
   }, [isKeyboardOpen]);
 
