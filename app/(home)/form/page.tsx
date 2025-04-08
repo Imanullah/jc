@@ -1,11 +1,10 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
-import useWindowSize from '@rooks/use-window-size';
 
 import { cn } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
@@ -39,13 +38,8 @@ export default function FormPage() {
 
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
-  const inputRef = useRef(null);
-  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
-  const { innerHeight } = useWindowSize();
-
-  const [isHeight, setIsHeight] = useState(0);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -69,30 +63,25 @@ export default function FormPage() {
   });
 
   useEffect(() => {
-    console.log(innerHeight);
     if (isKeyboardOpen) {
       setKeyboardVisible(true);
-      setIsHeight(innerHeight as number);
     } else if (!isKeyboardOpen) {
       setKeyboardVisible(false);
-      setIsHeight(innerHeight as number);
     }
-  }, [isKeyboardOpen, innerHeight]);
+  }, [isKeyboardOpen]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
         <AppHeader routeBack="/check" />
       </div>
-      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-600', { 'flex-1 h-full': !isKeyboardVisible })}>
+      <div className={cn('shrink h-full flex flex-col items-center gap-5 py-[20px] bg-amber-600', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        <p className="text-[#FAFAFA]">{isHeight}</p>
-        {/* <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div ref={inputRef} className="relative flex items-center">
+          <div className="relative flex items-center">
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
               <Image src={Arrowup} alt="" className="w-[15px]" />
             </button>
