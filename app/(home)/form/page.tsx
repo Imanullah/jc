@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
+import useWindowSize from '@rooks/use-window-size';
 
 import { cn } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
@@ -44,6 +45,7 @@ export default function FormPage() {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const [height, setHeight] = useState(0);
+  const { innerHeight } = useWindowSize();
 
   const handleResize = () => setHeight(window.innerHeight);
 
@@ -77,7 +79,7 @@ export default function FormPage() {
       setKeyboardVisible(false);
       setHeight(window.innerHeight);
     }
-  }, [isKeyboardOpen]);
+  }, [isKeyboardOpen, height]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
@@ -88,6 +90,7 @@ export default function FormPage() {
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
         <p className="text-[#FAFAFA]">{height}</p>
+        {/* <p className="text-[#FAFAFA]">{innerHeight}</p> */}
         {/* <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
