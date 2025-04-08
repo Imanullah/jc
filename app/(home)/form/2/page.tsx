@@ -32,7 +32,7 @@ export default function StartingPage() {
       </div>
       <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
         <HexagonImageSmall />
-        <div className="pb-16">
+        <div className="pb-20">
           <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">
             Thanks <span className="capitalize">{fname ? fname : '__'}</span>! Now, it's time to get a reallity check
           </p>
