@@ -1,17 +1,14 @@
 'use client';
-import { useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useRouter } from 'next/navigation';
 
+import { cn, useIsomorphicLayoutEffect } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
 import { useBaseContext } from '@/providers/BaseProvider';
 import HexagonImage from '@/components/HexagonImage';
 import SwiperComponent from '@/components/SwiperComponent';
 import { CheckButton } from '@/components/CustomButton';
-import { cn } from '@/lib/utils';
-import { useRouter } from 'next/navigation';
-
-const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
 export default function CheckPage() {
   const { isAction, setIsAction, setIsActive } = useBaseContext();

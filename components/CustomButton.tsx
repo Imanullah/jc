@@ -14,6 +14,21 @@ export const RoundedButton = ({ children, className, icon, isPending, alt = '', 
   );
 };
 
+export const SmallRoundedButton = ({ children, className, icon, isPending, alt = '', ...props }: { children?: React.ReactNode; className?: string; icon?: string | StaticImageData; isPending?: boolean; alt?: string } & ButtonProps) => {
+  const defaultClass = 'bg-white/60 opacity-50 rounded-full p-2 cursor-pointer';
+  return (
+    // <button type="button" className={cn(defaultClass, className)} {...props}>
+    //   {icon && <Image src={icon} alt={alt} className="w-[20px] h-[20px]" priority />}
+    //   {children}
+    // </button>
+
+    <button className={cn(defaultClass, className)} {...props}>
+      {icon && <Image src={icon} alt="" className="w-[15px]" />}
+      {children}
+    </button>
+  );
+};
+
 export const CheckButton = ({ children, className, isPending, ...props }: { children?: React.ReactNode; className?: string; isPending?: boolean } & ButtonProps) => {
   const defaultClass = 'bg-primary font-normal tracking-[0.32px] text-base w-full p-[20px] rounded-[19px] cursor-pointer';
   return (

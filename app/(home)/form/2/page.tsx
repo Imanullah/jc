@@ -1,29 +1,19 @@
 'use client';
-import React, { useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 
 import AppHeader from '@/components/AppHeader';
 import { useFormStore } from '@/stores/formStore';
 import { CheckButton } from '@/components/CustomButton';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
-
-gsap.registerPlugin(useGSAP);
-
-const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
+import JB2G_Lottie from '@/assets/icons/JB2G_Lottie.gif';
 
 export default function StartingPage() {
   const { fname } = useFormStore();
   const router = useRouter();
 
-  // useIsomorphicLayoutEffect(() => {
-  //   if (!fname) router.push('/form');
-  // }, [fname]);
-
-  useGSAP(() => {
-    gsap.to('.hexa', { rotateZ: '+=360', duration: 3, repeat: -1, ease: 'none' });
-  }, []);
+  // useGSAP(() => {
+  //   gsap.to('.hexa', { rotateZ: '+=360', duration: 3, repeat: -1, ease: 'none' });
+  // }, []);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
@@ -31,7 +21,7 @@ export default function StartingPage() {
         <AppHeader routeBack="/form/1" />
       </div>
       <div className="flex-1 flex flex-col items-center gap-5 py-[20px]">
-        <HexagonImageSmall />
+        <HexagonImageSmall image={JB2G_Lottie} />
         <div className="pb-20">
           <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">
             Thanks <span className="capitalize">{fname ? fname : '__'}</span>! Now, it's time to get a reallity check

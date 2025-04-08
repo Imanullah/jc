@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
-import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
@@ -11,6 +10,7 @@ import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
 import { useRouter } from 'next/navigation';
+import { SmallRoundedButton } from '@/components/CustomButton';
 
 type TForm = {
   fname: string;
@@ -80,9 +80,8 @@ export default function FormPage() {
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex items-center">
-            <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
-              <Image src={Arrowup} alt="" className="w-[15px]" />
-            </button>
+            <SmallRoundedButton icon={Arrowup} className="absolute right-0 mr-3" type='submit' />
+
             <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
           </div>
           {errors?.fname && <p className="text-xs text-red-400 p-2">{errors?.fname.message}</p>}

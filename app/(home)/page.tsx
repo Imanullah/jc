@@ -1,5 +1,4 @@
 'use client';
-import React, { useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -9,8 +8,7 @@ import { CheckButton } from '@/components/CustomButton';
 import HexagonImage from '@/components/HexagonImage';
 import SlideUp from '@/components/animation/SlideUp';
 import FadeOut from '@/components/animation/FadeOut';
-
-const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
+import { useIsomorphicLayoutEffect } from '@/lib/utils';
 
 gsap.registerPlugin(useGSAP);
 
