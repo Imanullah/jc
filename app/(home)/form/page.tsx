@@ -26,6 +26,22 @@ const nameValidation = {
   },
 };
 
+export function useKeyboard() {
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsKeyboardOpen(window.innerHeight < window.outerHeight * 0.7);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isKeyboardOpen;
+}
+
+
 export default function FormPage() {
   const {
     register,
@@ -38,7 +54,8 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const isKeyboardOpen = useKeyboard();
   const [isFocused, setIsFocused] = useState('');
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
@@ -63,16 +80,6 @@ export default function FormPage() {
 
   useEffect(() => {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
-
-    const handleResize = () => {
-      // Detect keyboard open/close based on window height changes
-      const isKeyboardVisible = window.innerHeight < window.outerHeight;
-      setIsKeyboardOpen(isKeyboardVisible);
-    };
-
-    // handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -81,7 +88,7 @@ export default function FormPage() {
     } else if (!isKeyboardOpen) {
       setIsFocused('Tutup');
     }
-  }, [isKeyboardOpen, isFocused]);
+  }, [isKeyboardOpen]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
