@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 // import HexagonImageSmall from '@/components/HexagonImageSmall';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -41,6 +41,8 @@ export default function FormPage() {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const [dotLottie, setDotLottie] = useState<any>(null);
 
+  const lottieRefs = useRef(null);
+
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
       dotLottie?.play();
@@ -49,7 +51,7 @@ export default function FormPage() {
   };
 
   useIsomorphicLayoutEffect(() => {
-    gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
+    // gsap.fromTo(lottieRefs.current, { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
   }, []);
 
@@ -84,7 +86,7 @@ export default function FormPage() {
         <AppHeader routeBack="/check" />
       </div>
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
-        <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-16" dotLottieRefCallback={setDotLottie} />
+        <DotLottieReact src="/JB2G_Lottie.lottie" style={{ width: '100px', height: 'auto' }} dotLottieRefCallback={setDotLottie} />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-20">Let's start with the basics. Type in your first name.</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
