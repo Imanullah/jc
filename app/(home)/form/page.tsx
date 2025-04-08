@@ -92,6 +92,7 @@ export default function FormPage() {
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
         <p className="text-[#FAFAFA]">{`${isFocused}`}</p>
+        <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
