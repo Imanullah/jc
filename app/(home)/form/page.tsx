@@ -4,6 +4,7 @@ import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import gsap from 'gsap';
+import useDetectKeyboardOpen from 'use-detect-keyboard-open';
 
 import { cn } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
@@ -53,7 +54,8 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const isKeyboardOpen = useDetectKeyboardOpen();
   const [isFocused, setIsFocused] = useState('');
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
@@ -77,17 +79,17 @@ export default function FormPage() {
     setFocus('fname');
   });
 
-  useEffect(() => {
-    const handleResize = () => {
-      // Detect keyboard open/close based on window height changes
-      const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.7;
-      setIsKeyboardOpen(isKeyboardVisible);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     // Detect keyboard open/close based on window height changes
+  //     const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.7;
+  //     // setIsKeyboardOpen(isKeyboardVisible);
+  //   };
 
-    // handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   // handleResize();
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   useEffect(() => {
     if (isKeyboardOpen) {
