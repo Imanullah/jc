@@ -41,7 +41,6 @@ export function useKeyboard() {
   return isKeyboardOpen;
 }
 
-
 export default function FormPage() {
   const {
     register,
@@ -54,8 +53,7 @@ export default function FormPage() {
   const { setFname } = useFormStore((state) => state);
   const router = useRouter();
   const inputRef = useRef(null);
-  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
-  const isKeyboardOpen = useKeyboard();
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isFocused, setIsFocused] = useState('');
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
@@ -75,11 +73,20 @@ export default function FormPage() {
   };
 
   useIsomorphicLayoutEffect(() => {
+    gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
   });
 
   useEffect(() => {
-    gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
+    const handleResize = () => {
+      // Detect keyboard open/close based on window height changes
+      const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.7;
+      setIsKeyboardOpen(isKeyboardVisible);
+    };
+
+    // handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
