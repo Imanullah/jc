@@ -1,29 +1,27 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import HexagonImageSmall from '@/components/HexagonImageSmall';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import useDetectKeyboardOpen from 'use-detect-keyboard-open';
 
-import { cn } from '@/lib/utils';
+import { cn, useIsomorphicLayoutEffect } from '@/lib/utils';
 import AppHeader from '@/components/AppHeader';
 import Arrowup from '@/assets/icons/arrow_up.png';
 import { useFormStore } from '@/stores/formStore';
-import { useRouter } from 'next/navigation';
-
-const useIsomorphicLayoutEffect = typeof window != 'undefined' ? useLayoutEffect : useEffect;
 
 type TForm = {
   fname: string;
   email: string;
 };
 
-const nameValidation = {
-  required: 'First name is required',
+const emailValidation = {
+  required: 'Email is required',
   pattern: {
-    value: /^[a-zA-Z]+[ a-zA-Z]*$/i,
-    message: 'Please enter a valid name',
+    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: 'Please enter a valid email',
   },
 };
 
@@ -36,12 +34,10 @@ export default function FormPage() {
     formState: { errors, isValid },
   } = useForm<TForm>();
 
-  const { setFname } = useFormStore((state) => state);
+  const { setEmail } = useFormStore((state) => state);
   const router = useRouter();
-  const inputRef = useRef(null);
-  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const isKeyboardOpen = useDetectKeyboardOpen();
-  const [isFocused, setIsFocused] = useState('');
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
@@ -52,59 +48,44 @@ export default function FormPage() {
       });
 
       const submitComplete = () => {
-        setFname(data.fname);
+        setEmail(data.email);
         reset();
-        router.push('/form/1');
+        router.push('/form/2');
       };
     }
   };
 
   useIsomorphicLayoutEffect(() => {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
-    setFocus('fname');
-  });
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     // Detect keyboard open/close based on window height changes
-  //     const isKeyboardVisible = window.innerHeight < window.outerHeight;
-  //     setIsKeyboardOpen(isKeyboardVisible);
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
+    setFocus('email');
+  }, [setFocus]);
 
   useEffect(() => {
     if (isKeyboardOpen) {
-      setIsFocused('Buka');
+      setKeyboardVisible(true);
     } else if (!isKeyboardOpen) {
-      setIsFocused('Tutup');
+      setKeyboardVisible(false);
     }
   }, [isKeyboardOpen]);
 
   return (
     <div className="flex flex-col h-dvh md:h-fit p-[20px]">
       <div>
-        <AppHeader routeBack="/check" />
+        <AppHeader routeBack="/form" />
       </div>
-      <div className={cn('flex-1 shrink flex flex-col items-center gap-5 py-[20px] bg-gray-300')}>
+      <div className={cn('shrink flex flex-col items-center gap-5 py-[20px]', { 'flex-1': !isKeyboardVisible })}>
         <HexagonImageSmall />
-        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        <p className="text-[#FAFAFA]">{`${isFocused}`}</p>
-        <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p>
+        <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center pb-12">How should we contact you? Type in your email address</p>
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div ref={inputRef} className="relative flex items-center">
+          <div className="relative flex items-center">
             <button type="submit" className="absolute right-0 mr-3 bg-white/60 opacity-50 rounded-full p-2 cursor-pointer">
               <Image src={Arrowup} alt="" className="w-[15px]" />
             </button>
-            <input type="text" {...register('fname', { onBlur: () => console.log('blur'), ...nameValidation })} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} />
-
-            {/* <input type="text" {...register('fname', nameValidation)} name="fname" placeholder="First Name" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.fname })} /> */}
+            <input type="text" {...register('email', emailValidation)} name="email" placeholder="Email Address" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.email })} />
           </div>
-          {errors?.fname && <p className="text-xs text-red-400 p-2">{errors?.fname.message}</p>}
+          {errors?.email && <p className="text-xs text-red-400 p-2">{errors?.email.message}</p>}
         </form>
       </div>
     </div>
