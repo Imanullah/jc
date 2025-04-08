@@ -43,6 +43,10 @@ export default function FormPage() {
   const isKeyboardOpen = useDetectKeyboardOpen();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
+  const [height, setHeight] = useState(0);
+
+  const handleResize = () => setHeight(window.innerHeight);
+
   const onSubmit: SubmitHandler<TForm> = (data) => {
     if (isValid) {
       gsap.to('.hexa', {
@@ -60,12 +64,12 @@ export default function FormPage() {
   };
 
   useIsomorphicLayoutEffect(() => {
-    console.log(isKeyboardVisible);
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
   });
 
   useEffect(() => {
+    handleResize();
     if (isKeyboardOpen) {
       setKeyboardVisible(true);
     } else if (!isKeyboardOpen) {
@@ -81,8 +85,8 @@ export default function FormPage() {
       <div className={cn('shrink flex flex-col items-center gap-5 py-[20px] bg-amber-600', { 'flex-1 h-full': !isKeyboardVisible })}>
         <HexagonImageSmall />
         <p className="text-[#FAFAFA] font-bagoss text-[19px] text-center">Let's start with the basics. Type in your first name.</p>
-        {/* <p className="text-[#FAFAFA]">{`${isKeyboardVisible}`}</p>
-        <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
+        <p className="text-[#FAFAFA]">{height}</p>
+        {/* <p className="text-[#FAFAFA]">{`${isKeyboardOpen}`}</p> */}
       </div>
       <div className="pt-[20px] flex flex-col gap-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
