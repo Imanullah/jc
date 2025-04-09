@@ -9,7 +9,7 @@ Task is to build a web application based on the provided Figma design
 
 ## Deployment
 - Code Repository: [https://github.com/Imanullah/jc](https://github.com/Imanullah/jc)
-- Deployed: [https://juicebox-iman.vercel.app](https://juicebox-iman.vercel.app)
+- Deployed: [https://juicebox-swart.vercel.app](https://juicebox-swart.vercel.app)
 
 ## Local server
 git clone [`git@github.com:Imanullah/jc.git`](https://github.com/Imanullah/jc)
