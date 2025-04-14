@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@import './srollbars';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  --color-primary-white: #fafafa;
+  --color-primary: #cdaaff;
+  --color-midnight: #0c0d10;
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl font-medium;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  h4 {
+    @apply text-base;
+  }
+}
+
+@utility container {
+  @apply mx-auto;
+
+  @variant sm {
+    width: 100%;
+  }
+
+  @variant md {
+    width: 100%;
+  }
+
+  @variant lg {
+    width: 720px;
+  }
+
+  @variant xl {
+    width: 720px;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sohne-sans);
+  --font-bagoss: var(--font-bagoss-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-synthesis: none;
+  margin: 0;
+  line-height: inherit;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 0.95em;
+}
+
+.text_gradient {
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(70, 71, 71));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-bg {
+  background: radial-gradient(94.55% 94.55% at 50% 5.45%, #222737 0%, #0c0d10 100%);
+}
+
+.pagination-swipe .swiper-pagination-bullet {
+  background-color: #fafafa !important; /* inactive bullet color */
+}
+
+.pagination-swipe .swiper-pagination-bullet-active {
+  @apply !bg-primary;
+}

@@ -1,0 +1,36 @@
+import React from 'react';
+import Link, { LinkProps } from 'next/link';
+import { useRouter } from 'next/navigation';
+
+interface TransitionLinkProps extends LinkProps {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+  duration?: number;
+  animationIn?: () => void;
+}
+
+const sleep = (ms: number = 0): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export default function TransitionLink({ children, href, className, duration, animationIn, ...props }: TransitionLinkProps) {
+  const router = useRouter();
+
+  const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const body = document.querySelector('body');
+    body?.classList.add('page-transition');
+
+    await sleep(duration);
+    router.push(href);
+    await sleep(duration);
+    body?.classList.remove('page-transition');
+  };
+
+  return (
+    <Link onClick={handleTransition} href={href} className={className} {...props}>
+      {children}
+    </Link>
+  );
+}
