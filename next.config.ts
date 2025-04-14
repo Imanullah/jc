@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   devIndicators: false,
 
   compiler: {
-    // removeConsole: true,
+    removeConsole: true,
   },
 
   experimental: {
