@@ -24,7 +24,7 @@ export default function CheckPage() {
 
   const onCheckPage = (path: string) => {
     router.prefetch(path);
-    gsap.fromTo('.hexa-image', { y: 0, opacity: 1 }, { scale: 0.15, y:-80, autoAlpha: 1, duration: 1.5, onComplete: () => router.push(path) });
+    gsap.fromTo('.hexa-image', { y: 0, opacity: 1 }, { scale: 0.15, y:-100, autoAlpha: 1, duration: 1.5, onComplete: () => router.push(path) });
   };
 
   // className = 'w-[150px] h-[180px]';
