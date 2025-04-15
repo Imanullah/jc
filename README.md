@@ -1,4 +1,4 @@
-Use Google Chrome or Opera for Better View
+Recommended using Google Chrome or Opera for better view
 
 ## Implementation
 - Framework: Using [Next.js](https://nextjs.org) & TypeScript

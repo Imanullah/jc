@@ -53,13 +53,13 @@ export default function FormPage() {
     setFocus('email');
   }, []);
 
-  // useEffect(() => {
-  //   if (isKeyboardOpen) {
-  //     setKeyboardVisible(true);
-  //   } else if (!isKeyboardOpen) {
-  //     setKeyboardVisible(false);
-  //   }
-  // }, [isKeyboardOpen]);
+  useEffect(() => {
+    if (isKeyboardOpen) {
+      setKeyboardVisible(true);
+    } else if (!isKeyboardOpen) {
+      setKeyboardVisible(false);
+    }
+  }, [isKeyboardOpen]);
 
   useEffect(() => {
     const onComplete = () => {

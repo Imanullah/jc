@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
 import { unstable_ViewTransition as ViewTransition } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -52,6 +52,14 @@ export default function FormPage() {
     gsap.fromTo('.hexa', { opacity: 0 }, { opacity: 1, duration: 3 });
     setFocus('fname');
   }, []);
+
+    useEffect(() => {
+      if (isKeyboardOpen) {
+        setKeyboardVisible(true);
+      } else if (!isKeyboardOpen) {
+        setKeyboardVisible(false);
+      }
+    }, [isKeyboardOpen]);
 
   useEffect(() => {
     const onComplete = () => {

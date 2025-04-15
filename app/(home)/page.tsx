@@ -1,8 +1,8 @@
 'use client';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { unstable_ViewTransition as ViewTransition } from 'react';
 
 import { CheckButton } from '@/components/buttons/CustomButton';
 import FrontText from '@/components/FrontText';
