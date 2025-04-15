@@ -1,6 +1,6 @@
 'use client';
+import React from 'react';
 import { AnimatePresence, motion, useInView } from 'motion/react';
-import * as React from 'react';
 
 export function GradualSpacing({ text = 'Gradual Spacing' }: { text: string }) {
   const ref = React.useRef(null);

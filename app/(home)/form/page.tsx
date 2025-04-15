@@ -71,7 +71,7 @@ export default function FormPage() {
   }, [dotLottie]);
 
   return (
-    <div className="flex flex-col justify-between min-h-full">
+    <div className="flex flex-col min-h-full">
       <div className="flex flex-col items-center space-y-14 py-[20px]">
         <ViewTransition name="hexa-image">
           <DotLottieReact src="/JB2G_Lottie.lottie" className="hexa w-20" dotLottieRefCallback={setDotLottie} />

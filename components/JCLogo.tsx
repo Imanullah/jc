@@ -2,18 +2,17 @@
 import gsap from 'gsap';
 
 export default function JCLogo() {
-  const tl = gsap.timeline({ paused: true });
+  const tl = gsap.timeline({ paused: true});
   const mouseOver = () => {
     const targets = gsap.utils.toArray(['#Vector', '#Vector_2', '#Vector_3', '#Vector_4', '#Vector_5', '#Vector_6', '#Vector_7']);
 
     tl.to(targets, { x: -50, duration: 0.1, autoAlpha: 0, ease: 'slow(0.9,2,false)', stagger: 0.1 });
-    tl.to('#Vector_10', { x: -60, duration: 0.5, ease: 'bounce.out' });
+    tl.to('#Vector_10', { x: -60, duration: 0.5});
     tl.play();
   };
 
   const mouseLeave = () => {
     tl.reverse();
-    console.log('leave');
   };
 
   return (

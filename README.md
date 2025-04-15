@@ -1,3 +1,4 @@
+Use Google Chrome or Opera for Better View
 
 ## Implementation
 - Framework: Using [Next.js](https://nextjs.org) & TypeScript
@@ -8,7 +9,7 @@
 
 ## Deployment
 - Code Repository: [https://github.com/Imanullah/jc](https://github.com/Imanullah/jc)
-- Deployed: [https://juicebox-swart.vercel.app](https://juicebox-swart.vercel.app)
+- Deployed: [https://jc-jc.vercel.app](https://jc-jc.vercel.app)
 
 ## Local server
 git clone [`git@github.com:Imanullah/jc.git`](https://github.com/Imanullah/jc)
