@@ -94,7 +94,7 @@ export default function FormPage() {
             <div className="relative flex items-center">
               <SmallRoundedButton icon={Arrowup} className="absolute right-0 mr-3" type="submit" />
 
-              <input type="text" {...register('email', emailValidation)} name="email" placeholder="Email Address" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.email })} />
+              <input type="text" {...register('email', emailValidation)} name="email" placeholder="Email Address" autoComplete="off" autoCorrect="off" className={cn('h-[60px] w-full border border-white/60 text-white p-2 rounded-[18px] outline-none', { 'border-red-400 text-red-400': errors?.email })} />
             </div>
             {errors?.email && <p className="text-xs text-red-400 p-2">{errors?.email.message}</p>}
           </form>
